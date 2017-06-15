@@ -3,6 +3,7 @@ const spawn = require('child_process').spawn;
 const io = require('socket.io-client');
 const socket = io('https://picam-dev.glitch.me/pi');
 
+var debug = process.argv.length > 2;
 var camera = {settings: {exposure: 0.0, effect: "none", vflip: false}};
 
 socket.on('connect', function(){
@@ -57,16 +58,12 @@ socket.on('snap', function() {
     'raspistill', args
   );
 
-  console.log(args);
-
   var stdout = Buffer.from("");
   child.on('error', function(err) {
-    console.log("Error running raspistill");
-    console.log(err);
+    console.log("Error running raspistill (error)");
   });
   child.stderr.on('data', function(chunk) {
-    console.log("Stderr running raspistill");
-    console.log(chunk);
+    console.log("Stderr running raspistill (stderr)");
   });
   child.stdout.on('data', function(chunk) {
     stdout = Buffer.concat([stdout, Buffer.from(chunk)]);
@@ -78,8 +75,10 @@ socket.on('snap', function() {
   });
 });
 
-setInterval(function() {
-  console.log("Exposure: " + camera.settings.exposure);
-  console.log("Vflip: " + camera.settings.vflip);
-  console.log("Effect: " + camera.settings.effect);
-}, 500);
+if (debug) {
+  setInterval(function() {
+    console.log("Exposure: " + camera.settings.exposure);
+    console.log("Vflip: " + camera.settings.vflip);
+    console.log("Effect: " + camera.settings.effect);
+  }, 500);
+}
