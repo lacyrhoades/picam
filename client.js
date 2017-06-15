@@ -1,9 +1,10 @@
-const spawn = require('child_process').spawn;
-
 const io = require('socket.io-client');
 const socket = io('https://picam-dev.glitch.me/pi');
 
+const spawn = require('child_process').spawn;
+
 var debug = process.argv.length > 2;
+
 var camera = {
   settings: {
     exposure: 0.0,
@@ -44,16 +45,18 @@ socket.on('snap', function() {
   var args = [
       '-ifx',
       camera.settings.effect,
+      '-ex',
+      camera.settings.mode,
+      '-ev',
+      camera.settings.exposure * 6, // raspistill uses 1/6th stop increments
       '-t',
       '1',
       '-h',
       '480',
       '-w',
       '640',
-      '-ev',
-      camera.settings.exposure * 6,
       '-br',
-      '55',
+      '54',
       '-mm',
       'matrix',
       '-n',
@@ -65,11 +68,10 @@ socket.on('snap', function() {
     args.push('-vf');
   }
 
-  var child = spawn(
-    'raspistill', args
-  );
+  var child = spawn('raspistill', args);
 
   var stdout = Buffer.from("");
+
   child.on('error', function(err) {
     console.log("Error running raspistill (error)");
   });
@@ -81,6 +83,7 @@ socket.on('snap', function() {
   });
   child.on('close', function() {
     if (stdout != null) {
+      console.log("Got image, sending back to socket");
       socket.emit('image', stdout);
     }
   });
