@@ -1,0 +1,15 @@
+{
+  "name": "picam",
+  "version": "1.0.0",
+  "description": "Remote control your Raspberry Pi from Glitch",
+  "main": "picam.js",
+  "dependencies": {
+    "ws": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
