@@ -1,8 +1,8 @@
-const io = require('socket.io-client');
-const socket = io('https://picam-dev.glitch.me/pi');
-
+require('dotenv').config()
 const spawn = require('child_process').spawn;
 
+const io = require('socket.io-client');
+const socket = io('https://' + process.env.GLITCH_URL + '/pi?upload_key=' + process.env.UPLOAD_KEY);
 var debug = process.argv.length > 2;
 
 var camera = {
@@ -77,6 +77,7 @@ socket.on('snap', function() {
   });
   child.stderr.on('data', function(chunk) {
     console.log("Stderr running raspistill (stderr)");
+    console.log(chunk.toString());
   });
   child.stdout.on('data', function(chunk) {
     stdout = Buffer.concat([stdout, Buffer.from(chunk)]);
@@ -85,6 +86,30 @@ socket.on('snap', function() {
     if (stdout != null) {
       console.log("Got image, sending back to socket");
       socket.emit('image', stdout);
+    }
+  });
+});
+
+socket.on('getUptime', function(ack) {
+  var args = [];
+  var child = spawn('uptime', args);
+
+  var stdout = "";
+
+  child.on('error', function(err) {
+    console.log("Error (error)");
+  });
+  child.stderr.on('data', function(chunk) {
+    console.log("Error (stderr)");
+    console.log(chunk.toString());
+  });
+  child.stdout.on('data', function(chunk) {
+    stdout += chunk;
+  });
+  child.on('close', function() {
+    if (stdout != null) {
+      console.log("Got uptime, sending back to socket");
+      ack(stdout);
     }
   });
 });
