@@ -5,35 +5,17 @@ const io = require('socket.io-client');
 const socket = io('https://' + process.env.GLITCH_URL + '/pi?upload_key=' + process.env.UPLOAD_KEY);
 var debug = process.argv.length > 2;
 
-var camera = {
-  settings: {
-    exposure: 0.0,
-    effect: "none",
-    vflip: false,
-    mode: "off"
-  }
-};
+const PiCamera = require('./picamera.js');
+var camera = new PiCamera();
 
 socket.on('connect', function(){
   console.log("Connected to server");
 });
 
-socket.on('settings', function(data, ack){
-  if (data.exposure != null) {
-    camera.settings.exposure = data.exposure
-  }
-  if (data.vflip != null) {
-    camera.settings.vflip = data.vflip;
-  }
-  if (data.effect != null) {
-    camera.settings.effect = data.effect;
-  }
-  if (data.mode != null) {
-    camera.settings.mode = data.mode;
-  }
-
+socket.on('settings', function(newSettings, ack){
+  camera.setSettings(newSettings);
   if (ack) {
-    ack(camera.settings);
+    ack(camera);
   }
 });
 
@@ -44,11 +26,11 @@ socket.on('disconnect', function(){
 socket.on('snap', function() {
   var args = [
       '-ifx',
-      camera.settings.effect,
+      camera.effect,
       '-ex',
-      camera.settings.mode,
+      camera.mode,
       '-ev',
-      camera.settings.exposure * 6, // raspistill uses 1/6th stop increments
+      camera.exposure * 6, // raspistill uses 1/6th stop increments
       '-t',
       '1',
       '-h',
@@ -64,8 +46,12 @@ socket.on('snap', function() {
       '-'
     ];
 
-  if (camera.settings.vflip) {
+  if (camera.vflip) {
     args.push('-vf');
+  }
+
+  if (camera.hflip) {
+    args.push('-hf');
   }
 
   var child = spawn('raspistill', args);
@@ -116,9 +102,11 @@ socket.on('getUptime', function(ack) {
 
 if (debug) {
   setInterval(function() {
-    console.log("Exposure: " + camera.settings.exposure);
-    console.log("Vflip: " + camera.settings.vflip);
-    console.log("Effect: " + camera.settings.effect);
-    console.log("Mode: " + camera.settings.mode);
+    console.log("Exposure: " + camera.exposure);
+    console.log("Vflip: " + camera.vflip);
+    console.log("Hflip: " + camera.hflip);
+    console.log("Effect: " + camera.effect);
+    console.log("Mode: " + camera.mode);
+    console.log("WB: " + camera.awbMode);
   }, 500);
 }
