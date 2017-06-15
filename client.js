@@ -4,7 +4,14 @@ const io = require('socket.io-client');
 const socket = io('https://picam-dev.glitch.me/pi');
 
 var debug = process.argv.length > 2;
-var camera = {settings: {exposure: 0.0, effect: "none", vflip: false}};
+var camera = {
+  settings: {
+    exposure: 0.0,
+    effect: "none",
+    vflip: false,
+    mode: "off"
+  }
+};
 
 socket.on('connect', function(){
   console.log("Connected to server");
@@ -20,6 +27,10 @@ socket.on('settings', function(data, ack){
   if (data.effect != null) {
     camera.settings.effect = data.effect;
   }
+  if (data.mode != null) {
+    camera.settings.mode = data.mode;
+  }
+
   if (ack) {
     ack(camera.settings);
   }
@@ -40,7 +51,7 @@ socket.on('snap', function() {
       '-w',
       '640',
       '-ev',
-      camera.settings.exposure * 12,
+      camera.settings.exposure * 6,
       '-br',
       '55',
       '-mm',
@@ -80,5 +91,6 @@ if (debug) {
     console.log("Exposure: " + camera.settings.exposure);
     console.log("Vflip: " + camera.settings.vflip);
     console.log("Effect: " + camera.settings.effect);
+    console.log("Mode: " + camera.settings.mode);
   }, 500);
 }
