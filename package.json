@@ -5,7 +5,7 @@
   "description": "Remote control your Raspberry Pi from Glitch",
   "main": "client.js",
   "bin": {
-    "picam-client": "client.js"
+    "picam-client": "cli.js"
   },
   "scripts": {
     "start": "node client.js"
