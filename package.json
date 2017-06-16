@@ -7,6 +7,9 @@
   "bin": {
     "picam-client": "cli.js"
   },
+  "files": {
+    "picamera.js"
+  }
   "scripts": {
     "start": "node client.js"
   },
