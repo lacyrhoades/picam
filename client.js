@@ -57,8 +57,10 @@ socket.on('snap', function() {
     args.push('-hf');
   }
 
-  console.log("Running raspistill with args");
-  console.log(args);
+  if (debug) {
+    console.log("Running raspistill with args:");
+    console.log(args);
+  }
 
   var child = spawn('raspistill', args);
 
