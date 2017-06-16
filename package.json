@@ -9,8 +9,8 @@
   },
   "files": [
     "picamera.js",
-    "config.js"
-    "cli.js"
+    "config.js",
+    "cli.js",
     "client.js"
   ],
   "scripts": {
