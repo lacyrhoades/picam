@@ -1,11 +1,13 @@
-require('dotenv').config()
 const spawn = require('child_process').spawn;
+const PiCamera = require('./picamera.js');
 
-const io = require('socket.io-client');
-const socket = io('https://' + process.env.GLITCH_URL + '/pi?upload_key=' + process.env.UPLOAD_KEY);
+require('./config.js');
 var debug = process.argv.length > 2;
 
-const PiCamera = require('./picamera.js');
+const io = require('socket.io-client');
+console.log('Connecting to https://' + process.env.GLITCH_URL + '/pi...');
+const socket = io('https://' + process.env.GLITCH_URL + '/pi?upload_key=' + process.env.UPLOAD_KEY);
+
 var camera = new PiCamera();
 
 socket.on('connect', function(){
