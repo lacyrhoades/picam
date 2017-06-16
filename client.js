@@ -72,7 +72,7 @@ socket.on('snap', function() {
   });
   child.on('close', function() {
     if (stdout != null) {
-      console.log("Got image, sending back to socket");
+      console.log("Got image, sending");
       socket.emit('image', stdout);
     }
   });
@@ -96,7 +96,7 @@ socket.on('getUptime', function(ack) {
   });
   child.on('close', function() {
     if (stdout != null) {
-      console.log("Got uptime, sending back to socket");
+      console.log("Got uptime, sending");
       ack(stdout);
     }
   });

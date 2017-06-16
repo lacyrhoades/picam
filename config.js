@@ -18,6 +18,3 @@ if (process.env.GLITCH_URL == null || process.env.UPLOAD_KEY == null) {
 if (process.env.GLITCH_URL == null || process.env.UPLOAD_KEY == null) {
   throw new Error('picamera-client needs a string for GLITCH_URL and UPLOAD_KEY in ~/.picam');
 }
-
-console.log(process.env.GLITCH_URL);
-console.log(process.env.UPLOAD_KEY);
