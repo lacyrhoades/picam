@@ -1,17 +1,17 @@
 {
-  "name": "picam-client",
+  "name": "picam",
   "version": "1.0.0",
   "private": true,
   "description": "Remote control your Raspberry Pi from Glitch",
-  "main": "client.js",
+  "main": "picam-client.js",
   "bin": {
-    "picam-client": "cli.js"
+    "picam-client": "picam-cli.js"
   },
   "files": [
     "*.js"
   ],
   "scripts": {
-    "start": "node client.js"
+    "start": "node picam-client.js"
   },
   "dependencies": {
     "dotenv": "^4.0.0",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lacyrhoades/picam-client.git"
+    "url": "https://github.com/lacyrhoades/picam.git"
   },
   "author": "Lacy Rhoades",
   "license": "MIT"
