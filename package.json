@@ -8,10 +8,7 @@
     "picam-client": "cli.js"
   },
   "files": [
-    "picamera.js",
-    "config.js",
-    "cli.js",
-    "client.js"
+    "*.js",
   ],
   "scripts": {
     "start": "node client.js"
