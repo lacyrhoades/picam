@@ -2,7 +2,7 @@ Remote control for the Raspberry Pi camera
 
 ![web sockets across browsers][demo]
 
-[demo]: https://cdn.glitch.com/25559513-c627-4cf7-84f7-5414a6e157b5%2FLarge%20GIF%20(1200x760).gif?1497655409594 "Demo Video"
+[demo]: https://media.giphy.com/media/3og0IG7UlgFjBj5sVq/giphy.gif "Demo Video"
 
 See: picam.glitch.me
 
