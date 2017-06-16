@@ -1,4 +1,5 @@
 const spawn = require('child_process').spawn;
+const sprintf = require('sprintf-js').sprintf; // for format strings
 const PiCamera = require('./picamera.js');
 
 require('./config.js');
@@ -32,7 +33,7 @@ socket.on('snap', function() {
       '-ex',
       camera.mode,
       '-ev',
-      camera.exposure * 6, // raspistill uses 1/6th stop increments
+      sprintf("%+.1f", camera.exposure * 6), // raspistill uses 1/6th stop increments
       '-t',
       '1',
       '-h',
@@ -55,6 +56,9 @@ socket.on('snap', function() {
   if (camera.hflip) {
     args.push('-hf');
   }
+
+  console.log("Running raspistill with args");
+  console.log(args);
 
   var child = spawn('raspistill', args);
 
