@@ -1,31 +1,35 @@
 {
-  "name": "picam-client",
+  "name": "picam",
   "version": "1.0.0",
-  "private": true,
-  "description": "Remote control your Raspberry Pi from Glitch",
-  "main": "client.js",
-  "bin": {
-    "picam-client": "cli.js"
-  },
-  "files": [
-    "*.js"
-  ],
+  "description": "Simple glitch-powered pi camera / pi remote control API. See: picam.glitch.me",
+  "main": "server.js",
   "scripts": {
-    "start": "node client.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "dotenv": "^4.0.0",
-    "home-dir": "^1.0.0",
-    "socket.io-client": "^2.0.3",
-    "sprintf-js": "^1.1.1"
+    "express": "^4.15.2",
+    "multer": "~1.3.0",
+    "moment": "~2.18.1",
+    "socket.io": "^2.0.3",
+    "base64-js": "^1.2.0",
+    "sprintf-js": "^1.1.1",
+    "nunjucks": "^3.0.1"
   },
   "engines": {
     "node": "8.1.x"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/lacyrhoades/picam-client.git"
+    "url": "https://glitch.com/edit/#!/picam"
   },
-  "author": "Lacy Rhoades",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "raspberrypi",
+    "webcam",
+    "API",
+    "remote control",
+    "websockets"
+  ]
 }

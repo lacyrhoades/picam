@@ -24,7 +24,6 @@ var effects = [
 ];
 
 var modes = [
-  'off',
   'auto',
   'night',
   'nightpreview',
@@ -55,6 +54,8 @@ var awbValues = [
 class PiCamera {
 }
 
+PiCamera.prototype.vflip = false;
+PiCamera.prototype.hflip = false;
 PiCamera.prototype.effect = effects[0];
 PiCamera.prototype.exposure = 0;
 PiCamera.prototype.mode = modes[0];
@@ -93,6 +94,18 @@ PiCamera.validExposureValue = function (val) {
     return 0;
   }
   return val;
+}
+
+PiCamera.prototype.settings = function () {
+  return {
+    exposureString: this.exposureString,
+    exposure: this.exposure,
+    vflip: this.vflip,
+    hflip: this.hflip,
+    effect: this.effect,
+    mode: this.mode,
+    awbMode: this.awbMode
+  };
 }
 
 PiCamera.prototype.setSettings = function (newSettings) {

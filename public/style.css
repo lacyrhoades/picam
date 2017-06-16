@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 25px;
+  color: #553333;
+}
+
+h1 {
+  text-align: justify;
+  font-weight: bold;
+  width: 100%;
+  height: 40px;
+  line-height: 40px; /* vert-center */
+  overflow: hidden;
+}
+
+h1:after {
+    content: "";
+    display: inline-block;
+    width: 100%;    
+}
+
+main {
+  width: 100%;
+}
+
+img.preview {
+  width: 640px;
+  height: 480px;
+}
+
+.sliderInput {
+  width: 300px;
+  display: inline;
+}
+
+div.timestamp {
+  background-color: rgba(33, 33, 33, 0.7);
+  text-align: right;
+  color: white;
+  left: 0;
+  position: relative;
+  top: -28px;
+  padding: 3px;
+}
+
+
+div.loading {
+  background-image: url("/assets/loading.png");
+  background-size: contain;
+  left: 0;
+  position: relative;
+  top: -504px;
+  height: 480px;
+  width: 640px;
+}
+
+div.image {
+  max-width: 640px;
+  max-height: 480px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+div.controls, div.controlInfo {
+  max-width: 640px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+div.controlInfo {
+  padding: 46px;
+  margin-top: 22px;
+  border: 2px dashed #333;
+  display: none;
+}
+
+div.controls {
+  display: none;
+}
+
+div.controls div {
+  padding: 12px;
+  border-bottom: 1px solid #EEE;
+}
+
+p.glyph {
+  position: fixed;
+  right: 15px;
+  bottom: 0px;
+}
+
+img {
+  width: 100%
+}
+
+.bold {
+  font-weight: bold;
+}
+
+p {
+  max-width: 600px;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+button {
+  font-size: 16px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  box-shadow: 2px 2px teal;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: yellow;
+}
+
+button:active {
+  box-shadow: none;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid lightgrey;
+}
+
+footer > a {
+  color: #BBBBBB;
+}
+

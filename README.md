@@ -1,13 +1,44 @@
-Remote control for the Raspberry Pi camera
+Glitch meets Raspberry Pi, a simple remote control web cam
+=========================
 
-![web sockets across browsers][demo]
+Server:
 
-[demo]: https://media.giphy.com/media/3og0IG7UlgFjBj5sVq/giphy.gif "Demo Video"
+1. Edit your glitch `.env` file with some "secret key" you made up
+    ````
+    UPLOAD_KEY=glitchIsLikeS0c00l
+    ````
 
-See: picam.glitch.me
+Client:
 
+1. If you don't have nodejs installed, do it:
+    ````
     sudo apt-get install nvm
     nvm install stable
-    npm install lacyrhoades/picam
-    # edit ~/.picam
-    ./picam-client
+    ````
+1. Install the picam client like so:
+    ````
+    npm install -g lacyrhoades/picam
+    ````
+1. Edit your ~/.picam file with both UPLOAD_KEY= and GLITCH_URL= like
+    ````
+    module.exports = {
+      "GLITCH_URL": "your-remix.glitch.me",
+      "UPLOAD_KEY": "somekey"
+    }
+    ````
+1. Run the picam client:
+    ````
+    picam-client [verbose]
+    ````
+1. Bonus points for using PM2 to keep it running all the time (optional)
+
+Hardware:
+
+1. Install [camera module](https://www.raspberrypi.org/products/camera-module-v2/)  to Raspberry Pi (via ribbon cable)
+1. Configure Wi-Fi and install Raspbian Lite
+1. Change password! Type: `passwd`
+1. Change root password! Type: `sudo passwd`
+1. sudo touch /boot/ssh (optional, to enable SSH)
+1. sudo apt-get update && sudo apt-get dist-upgrade (optional, to upgrade all software)
+1. sudo raspi-config -> Enable the pi's camera module
+1. Install nodejs if you don't have it already

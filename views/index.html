@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Raspberry Pi Remote Control Camera</title>
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=680, user-scalable=no">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>
+        Tenth Street, Brooklyn
+      </h1>
+    </header>
+
+    <main>
+      <div class="image">
+        <img class="preview" src="latest.jpg" alt="A Dream of the Future" />
+        <div class="timestamp">
+        </div>
+        <div class="loading">
+          &nbsp;
+        </div>
+      </div>
+      <div class="controlInfo">
+        Looking for the camera controls? The Pi is offline!<br/>When it comes back online the controls will show up here.
+      </div>
+      <div class="controls">
+        <div>
+          <button class="exposureDown" disabled="true">
+            -
+          </button>
+          <div class="sliderInput">
+            Exposure: <span class="exposureVal">0</span>
+          </div>
+          <button class="exposureUp" disabled="true">
+            +
+          </button>
+        </div>
+        <div>
+          <b>Exposure Mode:</b>
+          {% for mode in modes %}
+            <input name="mode" type="radio" value="{{mode}}" id="mode_{{mode}}" disabled="true"/><label for="mode_{{mode}}">{{mode}}</label>
+          {% endfor %}
+        </div>
+        <div>
+          <b>White Balance:</b>
+          {% for mode in awbModes %}
+            <input name="awbMode" type="radio" value="{{mode}}" id="awbMode_{{mode}}" disabled="true"/><label for="awbMode_{{mode}}">{{mode}}</label>
+          {% endfor %}
+        </div>
+        <div>
+          <b>Effect:</b>
+          {% for effect in effects %}
+            <input name="effect" type="radio" value="{{effect}}" id="effect_{{effect}}" disabled="true"/><label for="effect_{{effect}}">{{effect}}</label>
+          {% endfor %}
+        </div>
+        <div>
+          <input name="vflip" type="checkbox" id="vflip" disabled="true"/>
+          <label for="vflip">Vertical Flip</label>
+          <input name="hflip" type="checkbox" id="hflip" disabled="true"/>
+          <label for="hflip">Horizontal Flip</label>
+
+        </div>
+        <div>    
+          <button class="snap">
+            Take picture
+          </button>
+        </div>
+      </div>
+    </main>
+    
+    <p class="glyph">
+      <a href="https://glitch.com">&pi;</a>
+    </p>
+
+    <footer>
+      <p>
+        These images are from a <a href="https://www.raspberrypi.org/products/pi-zero-w/">Raspberry Pi Zero W</a>
+      </p>
+      <p>
+        More info at <a href="//glitch.com/edit/#!/picam">glitch.com/edit/#!/picam</a>
+      </p>
+      <p class="uptime">
+        
+      </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+  </body>
+</html>
