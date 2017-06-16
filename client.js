@@ -32,6 +32,8 @@ socket.on('snap', function() {
       camera.effect,
       '-ex',
       camera.mode,
+      '-awb',
+      camera.awbMode,
       '-ev',
       sprintf("%+.1f", camera.exposure * 6), // raspistill uses 1/6th stop increments
       '-t',
