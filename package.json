@@ -2,16 +2,16 @@
   "name": "picam",
   "version": "1.0.0",
   "private": true,
-  "description": "Remote control your Raspberry Pi from Glitch",
-  "main": "picam-client.js",
+  "description": "Remote control your Raspberry Pi camera from Glitch (see glitch.com)",
+  "main": "client/picam-client.js",
   "bin": {
-    "picam-client": "picam-cli.js"
+    "picam-client": "client/picam-cli.js"
   },
   "files": [
     "*.js"
   ],
   "scripts": {
-    "start": "node picam-client.js"
+    "start": "node client/picam-client.js"
   },
   "dependencies": {
     "dotenv": "^4.0.0",
