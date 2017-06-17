@@ -8,7 +8,7 @@
     "picam-client": "client/picam-cli.js"
   },
   "files": [
-    "*.js"
+    "client/*.js"
   ],
   "scripts": {
     "start": "node client/picam-client.js"
