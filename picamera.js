@@ -134,4 +134,16 @@ PiCamera.prototype.setSettings = function (newSettings) {
   }
 }
 
+PiCamera.prototype.settings = function () {
+  return {
+    exposureString: this.exposureString,
+    exposure: this.exposure,
+    vflip: this.vflip,
+    hflip: this.hflip,
+    effect: this.effect,
+    mode: this.mode,
+    awbMode: this.awbMode
+  };
+}
+
 module.exports = PiCamera;
