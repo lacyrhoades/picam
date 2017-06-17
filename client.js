@@ -36,6 +36,8 @@ socket.on('snap', function() {
       camera.awbMode,
       '-ev',
       sprintf("%+.1f", camera.exposure * 6), // raspistill uses 1/6th stop increments
+      '-sa',
+      camera.saturation,
       '-t',
       '1',
       '-h',
@@ -116,6 +118,7 @@ if (debug) {
     console.log("Vflip: " + camera.vflip);
     console.log("Hflip: " + camera.hflip);
     console.log("Effect: " + camera.effect);
+    console.log("Saturation: " + camera.saturation);
     console.log("Mode: " + camera.mode);
     console.log("WB: " + camera.awbMode);
   }, 500);

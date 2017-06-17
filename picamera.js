@@ -24,7 +24,6 @@ var effects = [
 ];
 
 var modes = [
-  'off',
   'auto',
   'night',
   'nightpreview',
@@ -40,7 +39,6 @@ var modes = [
 ];
 
 var awbValues = [
-  'off',
   'auto',
   'sun',
   'cloud',
@@ -55,14 +53,22 @@ var awbValues = [
 class PiCamera {
 }
 
-PiCamera.prototype.effect = effects[0];
 PiCamera.prototype.exposure = 0;
+PiCamera.prototype.saturation = 0;
+PiCamera.prototype.effect = effects[0];
 PiCamera.prototype.mode = modes[0];
 PiCamera.prototype.awbMode = awbValues[0];
 PiCamera.prototype.exposureString = "0.0";
+PiCamera.prototype.saturationString = "0.0";
+
 PiCamera.formatExposureString = function (val) {
   return sprintf("%+.1f", val);
 };
+
+PiCamera.formatSaturationString = function (val) {
+  return sprintf("%+.0f", val);
+};
+
 
 PiCamera.allModes = modes;
 PiCamera.validExposureMode = function(val) {
@@ -88,11 +94,18 @@ PiCamera.validAWBMode = function (val) {
   return awbValues[0];
 }
 
+PiCamera.validSaturationValue = function (val) {
+  if (isNaN(val)) {
+    return 0;
+  }
+  return min(max(val, -100), 100);
+}
+
 PiCamera.validExposureValue = function (val) {
   if (isNaN(val)) {
     return 0;
   }
-  return val;
+  return min(max(val, -4), 4);
 }
 
 PiCamera.prototype.setSettings = function (newSettings) {
@@ -108,6 +121,10 @@ PiCamera.prototype.setSettings = function (newSettings) {
   }
   if (newSettings.effect != null) {
     this.effect = newSettings.effect;
+  }
+  if (newSettings.saturation != null) {
+    this.saturation = newSettings.saturation;
+    this.saturationString = PiCamera.formatSaturationString(newSettings.saturation);
   }
   if (newSettings.mode != null) {
     this.mode = newSettings.mode;
