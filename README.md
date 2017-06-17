@@ -6,13 +6,16 @@
 
 See: picam.glitch.me
 
-## Installation on Raspberry Pi
+## Installation on Raspberry Pi (requires Node)
+
+    npm install lacyrhoades/picam
+    # create and edit file at ~/.picam
+    ./picam-client
+
+## Install Node first (if you need to)
 
     sudo apt-get install nvm
     nvm install stable
-    npm install lacyrhoades/picam
-    # edit ~/.picam
-    ./picam-client
 
 ## Example ~/.picam config
 
