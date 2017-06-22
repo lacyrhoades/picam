@@ -1,9 +1,15 @@
 require('dotenv').config()
 
-if (process.env.GLITCH_URL == null || process.env.UPLOAD_KEY == null) {
+var key = process.argv[2];
+
+if (isNaN(key)) {
+  key = false;
+}
+
+if (key && (process.env.GLITCH_URL == null || process.env.UPLOAD_KEY == null)) {
   var homedir = require('home-dir');
   try {
-    var config = require(homedir('/.picam'));
+    var config = require(homedir('/.picam'))[key];
     process.env.GLITCH_URL = config.GLITCH_URL;
     process.env.UPLOAD_KEY = config.UPLOAD_KEY;
     process.env.PICAM_ID = config.PICAM_ID;
