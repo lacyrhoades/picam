@@ -3,7 +3,7 @@ const sprintf = require('sprintf-js').sprintf; // for format strings
 const PiCamera = require('./picamera.js');
 
 require('./config.js');
-var debug = process.argv.length > 2;
+var debug = process.argv[2] == "verbose";
 
 const io = require('socket.io-client');
 console.log('Connecting to https://' + process.env.GLITCH_URL + '/pi...');
