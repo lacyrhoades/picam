@@ -83,7 +83,7 @@ socket.on('snap', function() {
   child.on('close', function() {
     if (stdout != null) {
       console.log("Got image, sending");
-      socket.emit('image', stdout);
+      socket.emit('image', {id: camera.id, data: stdout});
     }
   });
 });
