@@ -10,6 +10,7 @@ console.log('Connecting to https://' + process.env.GLITCH_URL + '/pi...');
 const socket = io('https://' + process.env.GLITCH_URL + '/pi?upload_key=' + process.env.UPLOAD_KEY);
 
 var camera = new PiCamera();
+camera.id = process.env.PICAM_ID;
 
 socket.on('connect', function(){
   console.log("Connected to server");

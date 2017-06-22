@@ -53,7 +53,7 @@ var awbValues = [
 class PiCamera {
 }
 
-PiCamera.prototype.id = require('uuid/v4')();
+PiCamera.prototype.id = "none";
 PiCamera.prototype.exposure = 0;
 PiCamera.prototype.saturation = 0;
 PiCamera.prototype.effect = effects[0];

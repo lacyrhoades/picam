@@ -6,6 +6,7 @@ if (process.env.GLITCH_URL == null || process.env.UPLOAD_KEY == null) {
     var config = require(homedir('/.picam'));
     process.env.GLITCH_URL = config.GLITCH_URL;
     process.env.UPLOAD_KEY = config.UPLOAD_KEY;
+    process.env.PICAM_ID = config.PICAM_ID;
     console.log("Loaded config from ~/.picam file");
   } catch (e) {
     console.log(e);
