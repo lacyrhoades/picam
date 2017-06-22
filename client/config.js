@@ -1,27 +1,27 @@
 require('dotenv').config()
 
-var key = process.argv[2];
+var config = {hosts: []}
 
-if (isNaN(key)) {
-  key = false;
-}
-
-if (key && (process.env.GLITCH_URL == null || process.env.UPLOAD_KEY == null)) {
+if (process.env.GLITCH_URL != null && process.env.UPLOAD_KEY != null) {
+  config.hosts.push({host: process.env.GLITCH_URL, uploadKey: process.env.UPLOAD_KEY})
+  config.cameraID = process.env.PICAM_ID;
+  console.log("Loaded config from .env file");
+} else {
   var homedir = require('home-dir');
+  var fs = require('fs');
   try {
-    var config = require(homedir('/.picam'))[key];
-    process.env.GLITCH_URL = config.GLITCH_URL;
-    process.env.UPLOAD_KEY = config.UPLOAD_KEY;
-    process.env.PICAM_ID = config.PICAM_ID;
+    config = JSON.parse(
+      String(fs.readFileSync(homedir('/.picam')))
+    );
     console.log("Loaded config from ~/.picam file");
   } catch (e) {
     console.log(e);
-    throw new Error('picamera-client needs a string for GLITCH_URL and UPLOAD_KEY in ~/.picam');
+    throw new Error('invalid config at ~/.picam');
   }
-} else {
-  console.log("Loaded config from .env file");
 }
 
-if (process.env.GLITCH_URL == null || process.env.UPLOAD_KEY == null) {
-  throw new Error('picamera-client needs a string for GLITCH_URL and UPLOAD_KEY in ~/.picam');
+if (config.cameraID == null || config.hosts.length == 0) {
+  throw new Error('picamera-client needs at least one host and a camera ID in ~/.picam');
 }
+
+module.exports = config;
