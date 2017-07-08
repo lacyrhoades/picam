@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Raspberry Pi Remote Control Camera</title>
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=680, user-scalable=no">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>
+        s&nbsp;t&nbsp;e&nbsp;r&nbsp;e&nbsp;o&nbsp;&nbsp;&nbsp;p&nbsp;i&nbsp;c&nbsp;a&nbsp;m
+      </h1>
+    </header>
+
+    <main>
+      <div class="images">
+        <img class="camera-0 storage" src="latest0.jpg" alt="A Dream of the Future" />
+        <img class="camera-1 storage" src="latest1.jpg" alt="A Dream of the Future" />
+        
+        <img class="camera-0 preview" src="latest0.jpg" alt="A Dream of the Future" />
+        <img class="camera-1 preview" src="latest1.jpg" alt="A Dream of the Future" />
+        <div>
+          <select class="camera-0 source">
+            <option selected value="camera-0">camera-left</option>
+            <option value="camera-1">camera-right</option>
+          </select>
+          <select class="camera-1 source">
+            <option value="camera-0">camera-left</option>
+            <option selected value="camera-1">camera-right</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="controlInfo">
+        Looking for the camera controls? The Pi's are offline!<br/>When they come back online the controls will show up here.
+      </div>
+      <div class="controls">
+        <div>    
+          <button class="snap">
+            TAKE PICTURE
+          </button>
+        </div>
+      </div>
+    </main>
+    
+    <p class="glyph">
+      <a href="https://glitch.com">&pi;</a>
+    </p>
+
+    <footer>
+      <p>
+        These images are from a <a href="https://www.raspberrypi.org/products/pi-zero-w/">Raspberry Pi Zero W</a>
+      </p>
+      <p>
+        More info at <a href="//glitch.com/edit/#!/picam-stereo">glitch.com/edit/#!/picam-stereo</a>
+      </p>
+      <p class="uptime">
+        
+      </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+  </body>
+</html>

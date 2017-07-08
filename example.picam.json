@@ -2,8 +2,8 @@
   "hosts": [
     {
       "host": "your-remix.glitch.me",
-      "upload_key": "somekey"
+      "token": "somekey"
     }
   ],
-  "cameraID": "camera-xyz"
+  "cameraName": "camera-xyz"
 }
