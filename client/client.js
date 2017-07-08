@@ -49,8 +49,6 @@ function setupSocket(socket) {
         sprintf("%+.1f", camera.exposure * 6), // raspistill uses 1/6th stop increments
         '-sa',
         camera.saturation,
-        '-t',
-        '1',
         '-h',
         '480',
         '-w',
