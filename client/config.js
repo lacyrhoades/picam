@@ -4,7 +4,7 @@ var config = {hosts: []}
 
 if (process.env.GLITCH_URL != null && process.env.UPLOAD_KEY != null) {
   config.hosts.push({host: process.env.GLITCH_URL, uploadKey: process.env.UPLOAD_KEY})
-  config.cameraID = process.env.PICAM_ID;
+  config.cameraName = process.env.PICAM_CAMERA_NAME;
   console.log("Loaded config from .env file");
 } else {
   var homedir = require('home-dir');
@@ -20,7 +20,7 @@ if (process.env.GLITCH_URL != null && process.env.UPLOAD_KEY != null) {
   }
 }
 
-if (config.cameraID == null || config.hosts.length == 0) {
+if (config.cameraName == null || config.hosts.length == 0) {
   throw new Error('picamera-client needs at least one host and a camera ID in ~/.picam');
 }
 
